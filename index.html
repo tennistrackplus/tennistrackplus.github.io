@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TennisTrack Plus - Tu Calendario y Competiciones</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6B0F1A;
+            --primary-light: #fbeff0;
+            --text: #1a1a1a;
+            --text-light: #666;
+            --bg: #fdfdfd;
+        }
+
+        * { box-sizing: border-box; }
+        
+        html, body { 
+            height: 100%; 
+            margin: 0; 
+            padding: 0;
+            overflow: hidden; 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            background: radial-gradient(circle at top right, var(--primary-light), transparent);
+        }
+
+        .main-card {
+            background: white;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 32px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: row;
+            gap: 40px;
+            align-items: center;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-side {
+            flex: 1.2;
+            text-align: left;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 16px rgba(107, 15, 26, 0.2);
+        }
+
+        .brand-name {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        h1 { font-size: 36px; font-weight: 900; margin: 0; line-height: 1; letter-spacing: -1.5px; color: var(--text); }
+        .subtitle { font-size: 15px; color: var(--text-light); margin: 15px 0 30px; max-width: 340px; line-height: 1.4; }
+
+        /* --- SECCIÓN DE TIENDAS --- */
+        .store-badges { 
+            display: flex; 
+            align-items: center;
+            gap: 0px; 
+            margin-left: -10px;
+        }
+
+        .store-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            text-decoration: none;
+            overflow: visible;
+        }
+
+        .store-link:hover { transform: scale(1.04); }
+
+        .badge-apple {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .badge-google {
+            height: 52px; 
+            width: auto;
+            display: block;
+            margin-left: 20px; 
+        }
+
+        .features-side {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .feat-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #fcfcfc;
+            border-radius: 18px;
+            border: 1px solid #f0f0f0;
+            transition: 0.2s;
+        }
+        
+        .feat-item:hover { border-color: var(--primary); background: white; transform: translateX(5px); }
+
+        .feat-icon {
+            font-size: 18px;
+            min-width: 42px;
+            height: 42px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+        }
+
+        .feat-text h3 { font-size: 13px; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: 0.3px; }
+        .feat-text p { font-size: 12px; color: var(--text-light); margin: 2px 0 0; line-height: 1.2; }
+
+        .footer-minimal {
+            margin-top: 30px;
+            font-size: 11px;
+            color: #bbb;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            html, body { overflow-y: auto; }
+            .wrapper { height: auto; padding: 40px 20px; justify-content: flex-start; }
+            .main-card { flex-direction: column; padding: 30px; gap: 30px; text-align: center; border-radius: 24px; }
+            .hero-side { text-align: center; display: flex; flex-direction: column; align-items: center; }
+            .store-badges { justify-content: center; margin-left: 0; }
+            .badge-google { margin-left: 0; } 
+            .subtitle { max-width: 100%; }
+            .features-side { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="main-card">
+        
+        <div class="hero-side">
+            <div class="logo">
+                <svg width="30" viewBox="0 0 24 24" fill="white"><path d="M19,12C19,15.86 15.86,19 12,19C8.14,19 5,15.86 5,12C5,8.14 8.14,5 12,5C15.86,5 19,8.14 19,12M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M13.6,12.4L17.1,13.8L17.5,12.8L14,11.4L13.6,12.4M12,13.5L14.5,14.5L14.9,13.5L12.4,12.5L12,13.5M10.4,12.4L10,11.4L6.5,12.8L6.9,13.8L10.4,12.4Z"/></svg>
+            </div>
+            <span class="brand-name">TennisTrack Plus</span>
+            <h1>TU TENIS,<br>SIEMPRE CONTIGO</h1>
+            <p class="subtitle">Gestiona tus favoritos, consulta rankings y cuadros de juego. Todo lo que necesitas para tu competición en un solo lugar.</p>
+            
+            <div class="store-badges">
+                <a href="#" class="store-link">
+                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/es-es?size=250x83" class="badge-apple" alt="App Store">
+                </a>
+                <a href="#" class="store-link">
+                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/es_badge_web_generic.png" class="badge-google" alt="Play Store">
+                </a>
+            </div>
+        </div>
+
+        <div class="features-side">
+            <div class="feat-item">
+                <div class="feat-icon">⭐</div>
+                <div class="feat-text">
+                    <h3>CALENDARIO Y FAVORITOS</h3>
+                    <p>Acceso directo y seguimiento de ranking.</p>
+                </div>
+            </div>
+
+            <div class="feat-item">
+                <div class="feat-icon">👤</div>
+                <div class="feat-text">
+                    <h3>PERFIL DE JUGADOR</h3>
+                    <p>Tus estadísticas y ranking individual/dobles.</p>
+                </div>
+            </div>
+
+            <div class="feat-item">
+                <div class="feat-icon">🏆</div>
+                <div class="feat-text">
+                    <h3>CUADROS DE JUEGO</h3>
+                    <p>Órdenes de juego y cuadros actualizados al minuto.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-minimal">
+        © 2026 TennisTrack Plus • Inscripciones procesadas a través de la plataforma iSquad
+    </div>
+</div>
+
+</body>
+</html>
